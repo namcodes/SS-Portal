@@ -1,0 +1,33 @@
+@import url('https://fonts.cdnfonts.com/css/kepler-std-3');
+@import url('https://fonts.cdnfonts.com/css/nevis');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+  
+.ql-container, .ql-snow{
+    border:none !important;
+}
+
+h1{
+    	
+font-size: 2em
+}
+
+h2{
+    font-size: 1.5em
+}
+
+a{
+    color: #000000
+}
+
+a:hover{
+    color: #e83760
+}
+
+
+

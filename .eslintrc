@@ -1,0 +1,16 @@
+{
+  "files": ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
+  "languageOptions": {
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true,
+        "tsx": true
+      }
+    }
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "extends": ["next/core-web-vitals", "./tsconfig.json"],
+  "rules": {
+    "react/jsx-uses-vars": "error"
+  }
+}
