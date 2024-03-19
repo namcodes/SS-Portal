@@ -31,12 +31,6 @@ interface JwtPayload {
 const DynamicNav = dynamic(() => import("../../../_components/navbar/Navbar"), {
   loading: () => <Skeleton />,
 });
-const DynamicFooter = dynamic(
-  async () => await import("../../../_components/footer/Footer"),
-  {
-    loading: () => <Skeleton />,
-  }
-);
 
 const DynamicSideNav = dynamic(
   async () => await import("@/app/_components/sidenav"),
@@ -100,7 +94,7 @@ const SharedLayout = ({ children }: React.PropsWithChildren) => {
             <main className="px-5 md:px-10">{children}</main>
           </div>
 
-          <DynamicFooter />
+   
         </Layout>
       </Layout>
     </Provider>

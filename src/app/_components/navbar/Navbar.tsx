@@ -243,68 +243,6 @@ const Navbar = ({ className }: { className?: NavbarProps }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   return (
-    /*  <nav
-      className={`bg-white !font-poppins z-50 py-4 px-16 flex justify-between items-center ${className} w-full`}
-    >
-      
-      <div className="flex gap-2 items-center justify-end w-full">
-        <div className="flex justify-end gap-2 items-center w-full">
-        <AutoComplete
-            popupClassName="certain-category-search-dropdown"
-            popupMatchSelectWidth={400}
-            style={{ minWidth: 150 }} 
-            options={options}
-          >
-            <Input.Search size="large" placeholder="Search..." />
-          </AutoComplete>
-
-        </div>
-
-        <div ref={ref3}>
-          <Dropdown menu={{ items }} placement="bottomRight">
-            <Link
-              ref={ref3}
-              href="/login"
-              className=" border-none bg-transparent "
-            >
-              Jumpcloud
-            </Link>
-          </Dropdown>
-        </div>
-
-        <Link href="/login" className=" border-none bg-transparent " ref={ref2}>
-          Zendesk
-        </Link>
-
-        <Link
-          href="https://enshoredit.zendesk.com/hc/en-us/requests/new"
-          className="d-none"
-          style={{textWrap: 'nowrap'}}
-          ref={ref1}
-        >
-          Submit a ticket
-        </Link>
-        <div></div>
-      </div>
-
-      <div className="flex gap-10 items-center w-45">
-      
-        <Dropdown
-          menu={{ items: userItems }}
-          placement="bottomRight"
-          trigger={["click"]}
-          className="cursor-pointer"
-          overlayClassName="w-[250px]"
-          openClassName="py-5"
-        >
-         <Avatar className="shadow-md">{avatar}</Avatar>
-      
-        </Dropdown>
-      </div>
-
-      <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
-    </nav>*/
-
     <nav className="bg-white !font-poppins z-50 md:px-5 w-full">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <button
@@ -356,7 +294,7 @@ const Navbar = ({ className }: { className?: NavbarProps }) => {
           } `}
         >
           <ul className="font-medium flex flex-col md:items-center px-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
-          <li className="order-last md:order-first">
+          <li className="order-last ml-5">
               <AutoComplete
                 popupClassName="certain-category-search-dropdown"
                 popupMatchSelectWidth={400}

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LinkOutlined } from "@ant-design/icons";
 const Footer = () => {
   return (
-    <footer className="flex py-4 justify-evenly bg-[#eeeeee] mt-56 flex-wrap">
+    <footer className="flex py-4 justify-evenly bg-[#eeeeee] mt-5 md:mt-10 flex-wrap">
       <div className="flex-wrap">
         <div className="flex gap-4 mb-2">
           <Image

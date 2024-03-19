@@ -199,179 +199,162 @@ const IncidentReport = () => {
         spinning={downloading || isLoading || mutationDraft.isLoading}
         fullscreen
       />
-      <div className="flex justify-between px-10 py-5  gap-10">
-        <div className=" w-1/2 flex flex-col gap-5">
-          <Input
-            onChange={onInputChange}
-            name="header"
-            placeholder="Header"
-            className="text-l"
-            value={header}
-          />
-          <Input
-            onChange={onInputChange}
-            placeholder="Subheader"
-            name="subheader"
-            className=" text-l"
-            value={subheader}
-          />
-          <div className="flex items-center gap-2">
+       <div className="grid grid-cols-1 md:grid-cols-3 bg-white gap-5 px-5 py-5 mt-5">
+          <div className="order-1 col-span-1 row-span-2 flex flex-col gap-5">
             <Input
               onChange={onInputChange}
-              placeholder="Incident Header"
-              name="incidentHeader"
+              name="header"
+              placeholder="Header"
               className="text-l"
-              value={incidentHeader}
+              value={header}
             />
-             <Select
-                  defaultValue="#fff"
-                  style={{
-                    width: 250,
-                  }}
-                  placeholder="Priority"
-                  onChange={onTextColorChange}
-                  value={incidentTextColor}
-                  options={[
-                    {
-                      value: 'E83760',
-                      text : "FFFFFF",
-                      label: (
-                        <>
-                         <div style={{color: "#E83760"}}> <InfoCircleFilled />{" "}Priority 1</div>
-                        </>),
-                    },
-                    {
-                      value: 'FFDA3C',
-                      text : "1D364E",
-                      label: (
-                        <>
-                         <div style={{color: "#FFDA3C"}}> <InfoCircleFilled />{" "}Priority 2</div>
-                        </>),
-                    },
-                    {
-                      value: 'A2C62C',
-                      text : "1D364E",
-                      label: (
-                        <>
-                         <div style={{color: "#a2c62c"}}> <InfoCircleFilled />{" "}Priority 3</div>
-                        </>),
-                    },
-                    {
-                      value: '008DC4',
-                      text : "1D364E",
-                      label: (
-                        <>
-                         <div style={{color: "#008DC4"}}> <InfoCircleFilled />{" "}Priority 4</div>
-                        </>),
-                    },
-                  ]}
-                />
-        
-               
-
-            {/* <Tooltip
-              placement="right"
-              title="Incident Header Background"
-              color="white"
-            >
-             
-              <ColorPicker
-                defaultValue={incidentBg ? incidentBg : "black"}
-                value={incidentBg}
-                onChange={onColorPickerChange}
-                />
-                </Tooltip>
-            <Tooltip placement="right" title="Text Color" color="white">
-              <ColorPicker
-                defaultValue="#fff"
-                onChange={onTextColorChange}
-                value={incidentTextColor}
+            <Input
+              onChange={onInputChange}
+              placeholder="Subheader"
+              name="subheader"
+              className=" text-l"
+              value={subheader}
+            />
+            <div className="flex items-center gap-2">
+              <Input
+                onChange={onInputChange}
+                placeholder="Incident Header"
+                name="incidentHeader"
+                className="text-l"
+                value={incidentHeader}
               />
-            </Tooltip>*/}
-          </div>
-          <ReactQuill
-            placeholder="Body"
-            className=" border !border-gray-200 rounded-lg"
-            onChange={changeBodyInput}
-            modules={{
-              toolbar: [
-                [{ header: "1" }, { header: "2" }],
-
-                ["bold", "italic", "underline", "strike"],
-
-                [
-                  { list: "ordered" },
-                  { list: "bullet" },
-                  { indent: "-1" },
-                  { indent: "+1" },
-                ],
-                ["link", "image", "video"],
-                ["clean"],
-              ],
-            }}
-            formats={formats}
-          />
-
-          <Select placeholder="Distros">
-            <Select.Option value="test">Test</Select.Option>
-          </Select>
-
-          {/* Add Start Date and End Date */}
-          <div className="flex gap-4">
-            <DatePicker placeholder="Start Date" />
-            <DatePicker placeholder="End Date" />
-          </div>
-
-          {/* Status */}
-          <Select placeholder="Status">
-            <Select.Option value="open">Open</Select.Option>
-            <Select.Option value="close">Close</Select.Option>
-          </Select>
-
-          <Button style={{backgroundColor: "#C82951", color: "#fff"}} onClick={() => submitForm()}>Publish</Button>
-          <Button onClick={() => submitDraftForm()}>Draft</Button>
+              <Select
+                    defaultValue="#fff"
+                    style={{
+                      width: 250,
+                    }}
+                    placeholder="Priority"
+                    onChange={onTextColorChange}
+                    value={incidentTextColor}
+                    options={[
+                      {
+                        value: 'E83760',
+                        text : "FFFFFF",
+                        label: (
+                          <>
+                          <div style={{color: "#E83760"}}> <InfoCircleFilled />{" "}Priority 1</div>
+                          </>),
+                      },
+                      {
+                        value: 'FFDA3C',
+                        text : "1D364E",
+                        label: (
+                          <>
+                          <div style={{color: "#FFDA3C"}}> <InfoCircleFilled />{" "}Priority 2</div>
+                          </>),
+                      },
+                      {
+                        value: 'A2C62C',
+                        text : "1D364E",
+                        label: (
+                          <>
+                          <div style={{color: "#a2c62c"}}> <InfoCircleFilled />{" "}Priority 3</div>
+                          </>),
+                      },
+                      {
+                        value: '008DC4',
+                        text : "1D364E",
+                        label: (
+                          <>
+                          <div style={{color: "#008DC4"}}> <InfoCircleFilled />{" "}Priority 4</div>
+                          </>),
+                      },
+                    ]}
+                  />
           
-          <DraftLists />
-          <CreatedLists />
-        </div>
-        <div className="relative">
-          <Button
-            onClick={htmlToImageConvert}
-            className="flex items-center gap-2 absolute top-0 right-0 text-white"
-          >
-            <span>
-              <DownloadOutlined />
-            </span>
-            Download
-          </Button>
-
-          <div className=" w-[800px] h-[1000px] bg-white" ref={elementRef}>
-            <div className=" bg-report-bg h-52 bg-cover">
-              <div className=" font-bold font-kepler-std flex flex-col justify-center px-8 py-10">
-                <h1 className=" text-7xl text-[#FFDA3C]">{header}</h1>
-                <h1 className="text-white text-3xl">{subheader}</h1>
-              </div>
             </div>
-            <h1
-              className=" text-sm px-8 text-center font-bold py-1"
-              style={{
-                backgroundColor: `#${incidentBg}`,
-                color: `#${incidentTextColor}`,
-              }}
-            >
-              {incidentHeader}
-            </h1>
-            {bodyData && (
-              <div
-                className="bg-white text-lg px-8 text-justify text-[#1D364E] py-4 "
-                dangerouslySetInnerHTML={{ __html: bodyData }}
-              ></div>
-            )}
-          </div>
-        </div>
-      </div>
+            <ReactQuill
+              placeholder="Body"
+              className=" border !border-gray-200 rounded-lg"
+              onChange={changeBodyInput}
+              modules={{
+                toolbar: [
+                  [{ header: "1" }, { header: "2" }],
 
-      <div></div>
+                  ["bold", "italic", "underline", "strike"],
+
+                  [
+                    { list: "ordered" },
+                    { list: "bullet" },
+                    { indent: "-1" },
+                    { indent: "+1" },
+                  ],
+                  ["link", "image", "video"],
+                  ["clean"],
+                ],
+              }}
+              formats={formats}
+            />
+
+            <Select placeholder="Distros">
+              <Select.Option value="test">Test</Select.Option>
+            </Select>
+
+            {/* Add Start Date and End Date */}
+            <div className="flex gap-4">
+              <DatePicker placeholder="Start Date" />
+              <DatePicker placeholder="End Date" />
+            </div>
+
+            {/* Status */}
+            <Select placeholder="Status">
+              <Select.Option value="open">Open</Select.Option>
+              <Select.Option value="close">Close</Select.Option>
+            </Select>
+
+            <Button style={{backgroundColor: "#C82951", color: "#fff"}} onClick={() => submitForm()}>Publish</Button>
+            <Button onClick={() => submitDraftForm()}>Draft</Button>
+          
+          </div>
+
+          <div className="order-2 col-span-1 md:col-span-2 grid gap-5 ">
+              <div className="col-span-2 relative w-full">
+              <Button
+                onClick={htmlToImageConvert}
+                className="flex items-center gap-2 absolute top-3 right-3 text-white"
+              >
+                <span>
+                  <DownloadOutlined />
+                </span>
+                Download
+              </Button>
+
+              <div className="bg-white" ref={elementRef}>
+                <div className=" bg-report-bg h-52 bg-cover">
+                  <div className=" font-bold font-kepler-std flex flex-col justify-center px-8 py-10">
+                    <h1 className=" text-7xl text-[#FFDA3C]">{header}</h1>
+                    <h1 className="text-white text-3xl">{subheader}</h1>
+                  </div>
+                </div>
+                <h1
+                  className=" text-sm px-8 text-center font-bold py-1"
+                  style={{
+                    backgroundColor: `#${incidentBg}`,
+                    color: `#${incidentTextColor}`,
+                  }}
+                >
+                  {incidentHeader}
+                </h1>
+                {bodyData && (
+                  <div
+                    className="bg-white text-lg px-8 text-justify text-[#1D364E] py-4 "
+                    dangerouslySetInnerHTML={{ __html: bodyData }}
+                  ></div>
+                )}
+              </div>
+              </div>
+              <div className="order-3 col-span-2 grid gap-5">
+            <DraftLists />
+            <CreatedLists />
+          </div>
+
+          </div>
+      </div>
     </div>
   );
 };

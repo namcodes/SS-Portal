@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Divider, List, Button, Skeleton, DatePicker } from "antd";
+import { Divider, List, Button, Skeleton, DatePicker, Card } from "antd";
 import { EditFilled, DeleteFilled } from "@ant-design/icons";
 import apiService from "@/app/_utils/_service/_api";
 import { useReactQueryGet } from "@/app/_utils/_service/_react-query";
@@ -30,8 +30,7 @@ const CreatedLists = () => {
   }, [incidentReports]);
 
   return (
-    <div className="p-10 rounded-md">
-      <h1>Posted by you</h1>
+    <Card title="Published Posts" className="rounded-md">
       <Divider />
       <List
         className="demo-loadmore-list"
@@ -73,7 +72,7 @@ const CreatedLists = () => {
           </List.Item>
         )}
       />
-    </div>
+    </Card>
   );
 };
 

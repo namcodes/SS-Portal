@@ -8,6 +8,7 @@ import {
   Select,
   Spin,
   notification,
+  Card,
 } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import incidentReportSlice from "@/app/_utils/redux/incidentReportSlice";
@@ -21,8 +22,7 @@ import DraftLists from "./components/draftLists";
 import { useReactQueryMutate } from "@/app/_utils/_service/_react-query";
 import apiService from "@/app/_utils/_service/_api";
 
-
-import { DatePicker } from 'antd';
+import { DatePicker } from "antd";
 
 const ScheduledMaintenance = () => {
   const [user, setUser] = useState<any>({});
@@ -181,20 +181,20 @@ const ScheduledMaintenance = () => {
         spinning={downloading || isLoading || mutationDraft.isLoading}
         fullscreen
       />
-      <div className="flex justify-between px-10 py-5  gap-10">
-        <div className=" w-1/2 flex flex-col gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 bg-white gap-5 px-5 py-5 mt-5">
+        <div className="order-1 col-span-1 row-span-2 flex flex-col gap-5">
           <Input
             onChange={onInputChange}
             name="header"
             placeholder="Header"
-            className=" text-xl"
+            className=" text-l"
             value={header}
           />
           <Input
             onChange={onInputChange}
             placeholder="Subheader"
             name="subheader"
-            className=" text-xl"
+            className="text-l"
             value={subheader}
           />
           <div className="flex items-center gap-2">
@@ -202,7 +202,7 @@ const ScheduledMaintenance = () => {
               onChange={onInputChange}
               placeholder="Maintenance Header"
               name="incidentHeader"
-              className="text-xl"
+              className="text-l"
               value={incidentHeader}
             />
             <Tooltip
@@ -251,21 +251,160 @@ const ScheduledMaintenance = () => {
             <Select.Option value="test">Test</Select.Option>
           </Select>
 
-
           {/* Add Start Date and End Date */}
-            <div className="flex gap-4">
-              <DatePicker placeholder="Start Date" />
-              <DatePicker placeholder="End Date" />
-            </div>
+          <div className="flex gap-4">
+            <DatePicker placeholder="Start Date" />
+            <DatePicker placeholder="End Date" />
+          </div>
 
-            {/* Status */}
-            <Select placeholder="Status">
-              <Select.Option value="Open">Open</Select.Option>
-              <Select.Option value="close">Close</Select.Option> 
-            </Select>
+          {/* Status */}
+          <Select placeholder="Status">
+            <Select.Option value="Open">Open</Select.Option>
+            <Select.Option value="close">Close</Select.Option>
+          </Select>
 
+          <Button
+            style={{ backgroundColor: "#C82951", color: "#fff" }}
+            onClick={() => submitForm()}
+          >
+            Publish
+          </Button>
           <Button onClick={() => submitDraftForm()}>Draft</Button>
-          <Button onClick={() => submitForm()}>Publish</Button>
+        </div>
+
+        <div className="order-2 col-span-1 md:col-span-2 grid gap-5 ">
+          <div className="col-span-2 relative w-full">
+            <Button
+              onClick={htmlToImageConvert}
+              className="flex items-center text-white gap-2 absolute top-3 right-3"
+            >
+              <span>
+                <DownloadOutlined />
+              </span>
+              Download
+            </Button>
+
+            <div className="bg-white" ref={elementRef}>
+              <div className="bg-report-bg h-52 bg-cover">
+                <div className=" font-bold font-kepler-std flex flex-col justify-center px-8 py-10">
+                  <h1 className=" text-7xl text-[#FFDA3C]">{header}</h1>
+                  <h1 className="text-white text-3xl">{subheader}</h1>
+                </div>
+              </div>
+              <h1
+                className=" text-sm px-8 text-center font-bold py-1"
+                style={{
+                  backgroundColor: `#${incidentBg}`,
+                  color: `#${incidentTextColor}`,
+                }}
+              >
+                {incidentHeader}
+              </h1>
+              {bodyData && (
+                <div
+                  className="bg-white text-lg px-8 text-justify text-[#1D364E] py-4 "
+                  dangerouslySetInnerHTML={{ __html: bodyData }}
+                ></div>
+              )}
+            </div>
+          </div>
+
+          <div className="order-3 col-span-2 grid gap-5">
+            <DraftLists />
+            <CreatedLists />
+          </div>
+        </div>
+      </div>
+
+      {/*<div className="flex justify-between px-5 py-5 gap-10">
+        <div className=" w-1/2 flex flex-col gap-5">
+          <Input
+            onChange={onInputChange}
+            name="header"
+            placeholder="Header"
+            className=" text-l"
+            value={header}
+          />
+          <Input
+            onChange={onInputChange}
+            placeholder="Subheader"
+            name="subheader"
+            className="text-l"
+            value={subheader}
+          />
+          <div className="flex items-center gap-2">
+            <Input
+              onChange={onInputChange}
+              placeholder="Maintenance Header"
+              name="incidentHeader"
+              className="text-l"
+              value={incidentHeader}
+            />
+            <Tooltip
+              placement="right"
+              title="Incident Header Background"
+              color="white"
+            >
+              <ColorPicker
+                defaultValue={incidentBg ? incidentBg : "black"}
+                value={incidentBg}
+                onChange={onColorPickerChange}
+              />
+            </Tooltip>
+            <Tooltip placement="right" title="Text Color" color="white">
+              <ColorPicker
+                defaultValue="#fff"
+                onChange={onTextColorChange}
+                value={incidentTextColor}
+              />
+            </Tooltip>
+          </div>
+          <ReactQuill
+            placeholder="Body"
+            className="bg-white rounded-lg"
+            onChange={changeBodyInput}
+            modules={{
+              toolbar: [
+                [{ header: "1" }, { header: "2" }],
+
+                ["bold", "italic", "underline", "strike"],
+
+                [
+                  { list: "ordered" },
+                  { list: "bullet" },
+                  { indent: "-1" },
+                  { indent: "+1" },
+                ],
+                ["link", "image", "video"],
+                ["clean"],
+              ],
+            }}
+            formats={formats}
+          />
+
+          <Select placeholder="Distros">
+            <Select.Option value="test">Test</Select.Option>
+          </Select>
+
+          <div className="flex gap-4">
+            <DatePicker placeholder="Start Date" />
+            <DatePicker placeholder="End Date" />
+          </div>
+
+        
+          <Select placeholder="Status">
+            <Select.Option value="Open">Open</Select.Option>
+            <Select.Option value="close">Close</Select.Option>
+          </Select>
+
+          <Button
+            style={{ backgroundColor: "#C82951", color: "#fff" }}
+            onClick={() => submitForm()}
+          >
+            Publish
+          </Button>
+          <Button onClick={() => submitDraftForm()}>Draft</Button>
+
           <DraftLists />
           <CreatedLists />
         </div>
@@ -305,7 +444,7 @@ const ScheduledMaintenance = () => {
             )}
           </div>
         </div>
-      </div>
+      </div>*/}
     </div>
   );
 };

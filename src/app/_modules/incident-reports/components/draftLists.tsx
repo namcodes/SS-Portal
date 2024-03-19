@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Divider, List, Button, Skeleton } from "antd";
+import { Divider, List, Button, Skeleton, Card } from "antd";
 import { EditFilled, DeleteFilled } from "@ant-design/icons";
 import apiService from "@/app/_utils/_service/_api";
 import { useReactQueryGet } from "@/app/_utils/_service/_react-query";
@@ -39,8 +39,7 @@ const DraftLists = () => {
     setallIncidentReports(incidentReports?.data?.data);
   }, [incidentReports]);
   return (
-    <div className="p-10 rounded-md">
-      <h1>Drafts</h1>
+    <Card title="Draft Posts" className="rounded-md">
       <Divider />
       <List
         className="demo-loadmore-list"
@@ -86,7 +85,7 @@ const DraftLists = () => {
           </List.Item>
         )}
       />
-    </div>
+    </Card>
   );
 };
 
