@@ -35,8 +35,8 @@ const page = () => {
   return (
     <div>
       <div className="flex flex-col font-bold text-xl text-white">
-      {/* bg-gradient-to-r from-[#1D364E] to-[#1d4e4e] to-80% */}
-        <div className="bg-gradient-to-r from-[#28506C] via-[#663654] to-[#6C6F48] grid grid-cols-1 grid-rows-1 md:grid-cols-2  gap-5 justify-between items-center px-10 py-10 bg-[#fff] rounded-md my-5">
+        {/* bg-gradient-to-r from-[#1D364E] to-[#1d4e4e] to-80% */}
+        <div className="bg-gradient-to-r from-[#28506C] via-[#663654] to-[#6C6F48] grid grid-cols-1 grid-rows-1 md:grid-cols-3  gap-5 justify-between items-center px-10 py-10 bg-[#fff] rounded-md my-5">
           <div className="order-1 flex flex-col md:flex-row gap-10">
             <div className="text-center">
               <Image
@@ -49,10 +49,16 @@ const page = () => {
             </div>
           </div>
 
-          <div className="order-2 flex flex-col text-sm md:text-xl text-right text-white">
-              <h2>{moment(date).format("LL")}</h2>
-              <h1 className="font-medium">{moment(date).format("LT")}</h1>
-            </div>
+          <div className="order-3 flex justify-center md:justify-end  gap-2">
+            <button className="rounded-md text-sm text-gray-300 p-2 bg-slate-900">button 1</button>
+            <button className="rounded-md text-sm text-gray-300 p-2 bg-slate-900">button 2</button>
+            <button className="rounded-md text-sm text-gray-300 p-2 bg-slate-900">button 3</button>
+          </div>
+
+          <div className="order-3 flex flex-col text-sm md:text-xl text-center md:text-right text-white">
+            <h2>{moment(date).format("LL")}</h2>
+            <h1 className="font-medium">{moment(date).format("LT")}</h1>
+          </div>
         </div>
         {/* <Home /> */}
         <AnnoucementPage />

@@ -28,21 +28,26 @@ const AnnoucementPage = () => {
   return (
     <div>
       {/* icon lists */}
-      <div className="grid grid-cols-5 grid-rows-1 text-center text-black items-center text-3xl bg-gray-200 py-3">
+      <div className="grid grid-cols-2 md:grid-cols-5 grid-rows-1 text-center text-black items-center text-3xl bg-gray-200 py-3">
         <div>
           <LaptopOutlined />
+          <p className="text-sm">Text Sample</p>
         </div>
         <div>
           <GooglePlusOutlined />
+          <p className="text-sm">Text Sample</p>
         </div>
         <div>
           <UserOutlined />
+          <p className="text-sm">Text Sample</p>
         </div>
         <div>
           <LaptopOutlined />
+          <p className="text-sm">Text Sample</p>
         </div>
         <div>
           <LaptopOutlined />
+          <p className="text-sm">Text Sample</p>
         </div>
       </div>
       <div className="grid grid-cols-1 grid-rows-1 gap-3 md:grid-cols-3 mt-3">
